@@ -8,7 +8,9 @@
 		<string>Angola</string>
 	</array>
 	<key>Antartica</key>
-	<array/>
+	<array>
+		<string>Santa&apos;s workshop</string>
+	</array>
 	<key>Asia</key>
 	<array>
 		<string>Afghanistan</string>

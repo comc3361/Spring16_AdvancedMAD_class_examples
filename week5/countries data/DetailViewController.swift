@@ -103,6 +103,7 @@ class DetailViewController: UITableViewController {
             //only add a country if there is text in the textfield
             if ((source.addedCountry.isEmpty) == false){
                 countries.append(source.addedCountry)
+                countries.sortInPlace()
                 tableView.reloadData()
                 let chosenContinent = continentListDetail.continents[selectedContinent]
                 continentListDetail.continentData[chosenContinent]?.append(source.addedCountry)
