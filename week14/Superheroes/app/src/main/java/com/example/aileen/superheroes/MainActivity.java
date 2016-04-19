@@ -6,7 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity implements UniverseListFragment.UniverseListListener{
+
+public class MainActivity extends AppCompatActivity implements UniverseListFragment.UniverseListListener, HeroDetailFragment.ButtonClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements UniverseListFragm
         View fragmentContainer = findViewById(R.id.fragment_container);
         //large layout device
         if (fragmentContainer != null) {
+
             //create new fragment instance
             HeroDetailFragment frag = new HeroDetailFragment();
             //create new fragment transaction
@@ -33,19 +35,23 @@ public class MainActivity extends AppCompatActivity implements UniverseListFragm
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             //commit the transaction
             ft.commit();
-        } else{ //app is running on a device with a smaller screen
+        }else{ //app is running on a device with a smaller screen
             Intent intent = new Intent(this, DetailActivity.class);
-            intent.putExtra("id", (int)id);
+            intent.putExtra("id", (int) id);
             startActivity(intent);
         }
     }
 
-    @Override
-    public void onBackPressed() {
+    @Override public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() > 0 ){
             getFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override public void addheroclicked(View view){
+        HeroDetailFragment fragment = (HeroDetailFragment)getFragmentManager().findFragmentById(R.id.fragment_container);
+        fragment.addhero();
     }
 }

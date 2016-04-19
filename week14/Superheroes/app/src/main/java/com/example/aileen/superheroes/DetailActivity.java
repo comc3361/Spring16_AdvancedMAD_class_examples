@@ -2,8 +2,9 @@ package com.example.aileen.superheroes;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements HeroDetailFragment.ButtonClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,5 +17,10 @@ public class DetailActivity extends AppCompatActivity {
         int universeId = (int) getIntent().getExtras().get("id");
         //pass the universe id to the fragment
         heroDetailFragment.setUniverse(universeId);
+    }
+
+    @Override public void addheroclicked(View view){
+        HeroDetailFragment fragment = (HeroDetailFragment)getFragmentManager().findFragmentById(R.id.fragment_container);
+        fragment.addhero();
     }
 }
